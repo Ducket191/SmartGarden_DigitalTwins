@@ -1,0 +1,18 @@
+#include <ArduinoJson.h>
+int lightsensor = 7
+int value = 0
+
+StaticJsonDocument<100> dataDoc;
+
+void setup() {
+  pinMode(lightsensor, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  value = digitalRead(lightsensor);
+  int brightness = map(value, 0, 255, 0, 100);
+  dataDoc["brightness"] = brightness;
+  serialJson(dataDoc, Serial);
+  delay(1000);
+}
