@@ -7,6 +7,7 @@ const char* pass = "";
 const char* serverURL = ""
 
 WiFiClient client;
+StaticJsonDocument<100> doc;
 
 void setup() {
   Serial.begin(9600);
@@ -20,5 +21,29 @@ void setup() {
 }
 
 void loop() {
+  while (Serial.available() > 0) {
+    if (WiFi.status() != WL_CONNECTED) {
+      Serial.println("WiFi not connected");
+      delay(1000);
+      return;
+    }
 
+    HTTPClient http
+    http.begin(client, serverURL);
+    http.addHeader("Content-Type", "application/json");
+
+    String data = Serial.readStringUntil('\n');
+    // Đoạn code sau deserialize để mình thêm data các kiểu, nếu không cần chỉnh data thì có thể http.POST luôn, nhưng mà nếu chỉnh xg thì phải serializeJson lại
+    //DeserializationError error = deserializeJson(doc, data);
+
+    //if (error) {
+      //Serial.print("JSON parse failed: ");
+      //Serial.println(error.c_str());
+      //http.end();
+      //return;
+    //}
+    int code = http.POST(data);
+    http.end();
+    delay(750);
+  }
 }
