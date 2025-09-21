@@ -1,5 +1,11 @@
 #include <ArduinoJson.h>
-int lightsensor = 7
+#include <DHT.h>
+#define DHTPIN 9 // Pin Chân Digtal Uno để giao tiếp DHT
+#define DHTTYPE DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+
+int lightsensor = 6
 int value = 0
 
 StaticJsonDocument<100> dataDoc;
@@ -7,12 +13,18 @@ StaticJsonDocument<100> dataDoc;
 void setup() {
   pinMode(lightsensor, INPUT);
   Serial.begin(9600);
+  dht.begin();
 }
 
 void loop() {
   value = digitalRead(lightsensor);
   int brightness = map(value, 0, 255, 0, 100);
   dataDoc["brightness"] = brightness;
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  dataDoc["humidity"] = humidity;
+  dataDoc["temperature"] = temperature;
   serialJson(dataDoc, Serial);
+  Serial.println();
   delay(1000);
 }
