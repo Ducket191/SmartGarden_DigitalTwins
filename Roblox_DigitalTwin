@@ -1,3 +1,31 @@
 Save on roblox studio
 Visit the game 
 A 3D model of the garden + watering system
+
+CODE_GETTING DATA:
+
+local HttpService = game:GetService("HttpService")
+
+-- Replace with your server's LAN or public IP + port
+local serverURL = "http://192.168.1.100:3000/api/data"  
+
+while true do
+    -- Make HTTP GET request to your backend
+    local success, response = pcall(function()
+        return HttpService:GetAsync(serverURL)
+    end)
+
+    if success then
+        local data = HttpService:JSONDecode(response)
+        print("Got data from ESP backend:", data)
+
+        -- Example: if ESP sends { "data": 123 }
+        if data.data then
+            print("Brightness = " .. data.data)
+        end
+    else
+        warn("Failed to fetch from backend:", response)
+    end
+
+    task.wait(5) -- fetch every 5 seconds
+end
