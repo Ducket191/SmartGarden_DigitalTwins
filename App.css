@@ -1,1 +1,59 @@
+/* App.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #e8f0ff);
+  color: #333;
+}
+
+/* Container for the whole app */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+/* Title */
+.app-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2a3d66;
+  text-align: center;
+}
+
+/* Charts wrapper */
+.charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 650px;
+}
+
+/* Card style for each chart */
+.chart-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Chart title */
+.chart-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #444;
+  text-align: left;
+  border-left: 4px solid #ff7300;
+  padding-left: 10px;
+}
 
