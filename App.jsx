@@ -37,33 +37,46 @@ function App() {
   }, []);
 
 
-  return (
-    <div style={{ textAlign: "center", marginTop: "30px" }}>
-      <h2>Brightness, Temperature, and Humidity Over Time</h2>
-      <LineChart width={600} height={300} data={chartTempData}>
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="time" />
-        <YAxis domain={['auto', 'auto']} label={{ value: '°C', angle: -90, position: 'insideLeft' }} />
-        <Tooltip />
-        <Line type="monotone" dataKey="temp" stroke="#ff7300" dot={true} />
-      </LineChart>
-      <LineChart width={600} height={300} data={chartHumidData}>
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="time" />
-        <YAxis domain={['auto', 'auto']} label={{ value: '%', angle: -90, position: 'insideLeft' }} />
-        <Tooltip />
-        <Line type="monotone" dataKey="humid" stroke="#ff7300" dot={true} />
-      </LineChart>
-            <LineChart width={600} height={300} data={chartBrightData}>
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="time" />
-        <YAxis domain={['auto', 'auto']} label={{ value: '%', angle: -90, position: 'insideLeft' }} />
-        <Tooltip />
-        <Line type="monotone" dataKey="brightness" stroke="#ff7300" dot={true} />
-      </LineChart>
-    </div>
+return (
+  <div className="app-container">
+    <h2 className="app-title">Brightness, Temperature, and Humidity Over Time</h2>
+    <div className="charts">
+      <div className="chart-card">
+        <h3 className="chart-title">Temperature</h3>
+        <LineChart width={600} height={300} data={chartTempData}>
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="time" />
+          <YAxis domain={['auto', 'auto']} label={{ value: '°C', angle: -90, position: 'insideLeft' }} />
+          <Tooltip />
+          <Line type="monotone" dataKey="temp" stroke="#ff7300" dot />
+        </LineChart>
+      </div>
 
-  );
+      <div className="chart-card">
+        <h3 className="chart-title">Humidity</h3>
+        <LineChart width={600} height={300} data={chartHumidData}>
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="time" />
+          <YAxis domain={['auto', 'auto']} label={{ value: '%', angle: -90, position: 'insideLeft' }} />
+          <Tooltip />
+          <Line type="monotone" dataKey="humid" stroke="#3f51b5" dot />
+        </LineChart>
+      </div>
+
+      <div className="chart-card">
+        <h3 className="chart-title">Brightness</h3>
+        <LineChart width={600} height={300} data={chartBrightData}>
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="time" />
+          <YAxis domain={['auto', 'auto']} label={{ value: '%', angle: -90, position: 'insideLeft' }} />
+          <Tooltip />
+          <Line type="monotone" dataKey="brightness" stroke="#4caf50" dot />
+        </LineChart>
+      </div>
+    </div>
+  </div>
+);
+
 }
 
 export default App;
