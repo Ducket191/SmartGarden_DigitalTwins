@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let latestData = { temperature: null, humidity: null, timestamp: null };
+let latestData = {brightness:null, temperature: null, humidity: null, timestamp: null};
 
 app.post("/api/data", (req, res) => {
   latestData = {
