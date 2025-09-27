@@ -2,9 +2,9 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "IoT LAB";
-const char* pass = "";
-const char* serverURL = ""
+const char* ssid = "P2105";
+const char* password = "10112012";
+const char* serverURL = "http://192.168.1.3:5000/api/data"; //chay ipconfig tren cmd de lay dia chi ip, cau truc la http://0.0.0.0:PORT/"ten api";
 
 WiFiClient client;
 StaticJsonDocument<100> doc;
@@ -28,7 +28,7 @@ void loop() {
       return;
     }
 
-    HTTPClient http
+    HTTPClient http;
     http.begin(client, serverURL);
     http.addHeader("Content-Type", "application/json");
 
@@ -43,6 +43,7 @@ void loop() {
       //return;
     //}
     int code = http.POST(data);
+    Serial.println(code);
     http.end();
     delay(750);
   }
