@@ -43,6 +43,9 @@ void loop() {
       //return;
     //}
     int code = http.POST(data);
+    if (code < 0) {
+      Serial.println(http.errorToString(code));
+    }
     Serial.println(code);
     http.end();
     delay(750);
