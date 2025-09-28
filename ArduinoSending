@@ -18,7 +18,7 @@ void setup() {
 
 void loop() {
   value = analogRead(lightsensor);
-  int brightness = map(value, 0, 255, 0, 100);
+  int brightness = map(value, 0, 1023, 0, 100);
   dataDoc["brightness"] = brightness;
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
