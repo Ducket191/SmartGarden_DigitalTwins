@@ -2,24 +2,29 @@
 #include <DHT.h>
 #define DHTPIN 9 // Pin Chân Digtal Uno để giao tiếp DHT
 #define DHTTYPE DHT11
-
 DHT dht(DHTPIN, DHTTYPE);
 
 int lightsensor = A0;
+int MOISTUREPIN = A1;
+int MoistureValue = 0;
 int value = 0;
 
 StaticJsonDocument<100> dataDoc;
 
 void setup() {
   pinMode(lightsensor, INPUT);
+  pinMode(MOISTUREPIN, INPUT);
   Serial.begin(9600);
   dht.begin();
 }
 
 void loop() {
   value = analogRead(lightsensor);
+  MoistureValue = analogRead(MOISTUREPIN);
+  int moisture = map(MoistureValue, 0, 1023, 0, 100);
   int brightness = map(value, 0, 1023, 0, 100);
   dataDoc["brightness"] = brightness;
+  dataDic["moisture"] = moisture;
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
   dataDoc["humidity"] = humidity;
