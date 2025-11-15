@@ -2,10 +2,10 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "P2105";
-const char* password = "10112012";
-const char* dataURL = "http://192.168.1.3:5000/savedata";
-const char* serverURL = "http://192.168.1.3:5000/api/data"; //chay ipconfig tren cmd de lay dia chi ip, cau truc la http://0.0.0.0:PORT/"ten api";
+const char* ssid = "IoT LAB";
+const char* password = "kvt1ptit";
+const char* dataURL = "http://192.168.76.113:5000/savedata";
+const char* serverURL = "http://192.168.76.113:5000/api/data"; //chay ipconfig tren cmd de lay dia chi ip, cau truc la http://0.0.0.0:PORT/"ten api";
 unsigned long lastSaveTime = 0;
 const unsigned long saveInterval = 15UL * 60UL * 1000UL; // 15 minutes in ms
 
