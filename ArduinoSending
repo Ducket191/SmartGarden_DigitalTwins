@@ -24,7 +24,7 @@ void loop() {
   int moisture = map(MoistureValue, 0, 1023, 0, 100);
   int brightness = map(value, 0, 1023, 0, 100);
   dataDoc["brightness"] = brightness;
-  dataDic["moisture"] = moisture;
+  dataDoc["moisture"] = moisture;
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
   dataDoc["humidity"] = humidity;
